@@ -15,6 +15,7 @@ export class CommandLibrary {
 
   public async init(): Promise<void> {
     await this.ConLib.open();
+    console.log('Command Library Initialized');
     return;
   }
 
@@ -25,9 +26,10 @@ export class CommandLibrary {
     const mainConfig = config ?? LibraryDefaultConfig;
 
     // @ts-ignore: Ignore for now
-    const CommandLibrary = new CommandLibrary(path, mainConfig);
-    await CommandLibrary.init();
-    return CommandLibrary;
+    const commandLibrary = new CommandLibrary(path, mainConfig);
+    await commandLibrary.init();
+    console.log('Command Library Building');
+    return commandLibrary;
   }
 
   public async writeJsonCommand(command: object): Promise<void> {

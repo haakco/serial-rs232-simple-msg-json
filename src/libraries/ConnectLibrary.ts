@@ -36,13 +36,8 @@ export class ConnectLibrary {
         }
       });
 
-      this.parser = this.port.pipe(new ReadlineParser());
-
-      this.parser.on('error', function (err) {
-        console.log('Error: ', err.message);
-      });
-
       this.port.on('open', async err => {
+        console.log('test4');
         if (err) {
           console.error('Error opening serial port:', err);
           reject(err);
@@ -50,6 +45,17 @@ export class ConnectLibrary {
           console.log(
             `Serial port ${this.config.path} opened at ${this.config.baudRate} baud`,
           );
+
+          this.parser = this.port.pipe(new ReadlineParser());
+
+          this.parser.on('error', function (err) {
+            console.log('Error: ', err.message);
+          });
+
+          // this.parser.on('data', function (data) {
+          //   console.log('data: ', data);
+          // });
+
           return resolve(void 0);
         }
       });
