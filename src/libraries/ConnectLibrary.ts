@@ -37,7 +37,6 @@ export class ConnectLibrary {
       });
 
       this.port.on('open', async err => {
-        console.log('test4');
         if (err) {
           console.error('Error opening serial port:', err);
           reject(err);
