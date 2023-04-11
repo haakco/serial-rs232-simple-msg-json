@@ -1,6 +1,6 @@
 {
   "name": "serial-rs232-simple-msg-json",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Simple library to do json messaging between rs232 ports",
   "main": "lib/main/index.js",
   "typings": "lib/main/index.d.ts",
