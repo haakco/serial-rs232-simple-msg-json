@@ -1,6 +1,8 @@
 import { AutoDetectTypes } from '@serialport/bindings-cpp';
 import { SerialPortOpenOptions } from 'serialport/dist/serialport';
 
+import { InterfaceMsg } from '../interfaces';
+
 import { ConnectLibrary, LibraryDefaultConfig } from './ConnectLibrary';
 
 export class CommandLibrary {
@@ -32,11 +34,11 @@ export class CommandLibrary {
     return commandLibrary;
   }
 
-  public async writeJsonCommand(command: object): Promise<void> {
+  public async writeJsonCommand(command: InterfaceMsg): Promise<void> {
     return await this.ConLib.writeCommand(JSON.stringify(command));
   }
 
-  public async readJsonCommand(command: object): Promise<object> {
+  public async readJsonCommand(command: InterfaceMsg): Promise<InterfaceMsg> {
     return JSON.parse(await this.ConLib.readCommand(JSON.stringify(command)));
   }
 

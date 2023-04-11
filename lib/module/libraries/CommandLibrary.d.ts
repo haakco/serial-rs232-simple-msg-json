@@ -1,5 +1,6 @@
 import { AutoDetectTypes } from '@serialport/bindings-cpp';
 import { SerialPortOpenOptions } from 'serialport/dist/serialport';
+import { InterfaceMsg } from '../interfaces';
 export declare class CommandLibrary {
   private ConLib;
   constructor(path: string, config?: SerialPortOpenOptions<AutoDetectTypes>);
@@ -8,7 +9,7 @@ export declare class CommandLibrary {
     path: string,
     config?: SerialPortOpenOptions<AutoDetectTypes>,
   ): Promise<CommandLibrary>;
-  writeJsonCommand(command: object): Promise<void>;
-  readJsonCommand(command: object): Promise<object>;
+  writeJsonCommand(command: InterfaceMsg): Promise<void>;
+  readJsonCommand(command: InterfaceMsg): Promise<InterfaceMsg>;
   close(): Promise<void>;
 }
