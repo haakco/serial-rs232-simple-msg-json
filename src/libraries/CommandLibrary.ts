@@ -2,6 +2,7 @@ import { AutoDetectTypes } from '@serialport/bindings-cpp';
 import { SerialPortOpenOptions } from 'serialport/dist/serialport';
 
 import { InterfaceMsg } from '../interfaces';
+import { logger } from '../utils/Logger';
 
 import { ConnectLibrary, LibraryDefaultConfig } from './ConnectLibrary';
 
@@ -17,7 +18,7 @@ export class CommandLibrary {
 
   public async init(): Promise<void> {
     await this.ConLib.open();
-    console.log('Command Library Initialized');
+    logger.debug('Command Library Initialized');
     return;
   }
 
@@ -30,7 +31,7 @@ export class CommandLibrary {
     // @ts-ignore: Ignore for now
     const commandLibrary = new CommandLibrary(path, mainConfig);
     await commandLibrary.init();
-    console.log('Command Library Building');
+    logger.debug('Command Library Building');
     return commandLibrary;
   }
 
