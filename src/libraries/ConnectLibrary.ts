@@ -26,7 +26,7 @@ export class ConnectLibrary {
       ...(config ?? {}),
       ...{ path },
     };
-    logger.info(this.config);
+    logger.debug(this.config);
   }
 
   public async open(): Promise<void> {
@@ -43,7 +43,7 @@ export class ConnectLibrary {
           logger.error('Error opening serial port:', err);
           reject(err);
         } else {
-          logger.info(
+          logger.debug(
             `Serial port ${this.config.path} opened at ${this.config.baudRate} baud`,
           );
 
@@ -65,7 +65,7 @@ export class ConnectLibrary {
 
   public async writeCommand(command: string): Promise<void> {
     return new Promise((resolve, reject) => {
-      logger.info(`writeCommand ${command}`);
+      logger.debug(`writeCommand ${command}`);
       this.port.write(`${command}\n`, err => {
         if (err) return reject(err);
         setTimeout(() => {
@@ -77,7 +77,7 @@ export class ConnectLibrary {
 
   public async readCommand(command: string): Promise<string> {
     return new Promise((resolve, reject) => {
-      logger.info(`readCommand ${command}`);
+      logger.debug(`readCommand ${command}`);
       this.port.write(`${command}\n`, err => {
         if (err) {
           logger.error(err);
@@ -95,7 +95,7 @@ export class ConnectLibrary {
       if (err) {
         return logger.error('Error: ', err.message);
       }
-      logger.info('port closed');
+      logger.debug('serial port closed');
     });
   }
 }
