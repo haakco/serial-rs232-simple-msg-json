@@ -84,6 +84,7 @@ export class ConnectLibrary {
           return reject(err);
         }
         this.parser.once('data', data => {
+          logger.debug(`readCommand result : ${data}`);
           resolve(data);
         });
       });
