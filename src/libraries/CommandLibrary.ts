@@ -36,11 +36,15 @@ export class CommandLibrary {
   }
 
   public async writeJsonCommand(command: InterfaceMsg): Promise<void> {
+    logger.debug(command, 'writeJsonCommand');
     return await this.ConLib.writeCommand(JSON.stringify(command));
   }
 
   public async readJsonCommand(command: InterfaceMsg): Promise<InterfaceMsg> {
-    return JSON.parse(await this.ConLib.readCommand(JSON.stringify(command)));
+    logger.debug(command, 'sendJsonCommand');
+    const readCommand = await this.ConLib.readCommand(JSON.stringify(command));
+    logger.debug(readCommand, 'readJsonCommand');
+    return JSON.parse(readCommand);
   }
 
   public async close(): Promise<void> {
